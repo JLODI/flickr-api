@@ -1,25 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on rails Flickr API practice https://www.theodinproject.com/lessons/ruby-on-rails-flickr-api
 
-Things you may want to cover:
+This is part of the Flickr API lesson in The Odin Project’s Ruby on Rails Curriculum. Find it at https://www.theodinproject.com”
 
-* Ruby version
+Ruby version 3.35
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# flickr-api
+Ruby on Rails version 8.0.1
