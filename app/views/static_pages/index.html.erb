@@ -1,3 +1,11 @@
 <H1>Welcome to the Flickr API viewer!</H1>
 
 <%= render partial: "form" %>
+
+<% if @photos.present? %>
+    <% @photos.each do |photo| %>
+        <%= image_tag(photo.url_q) %>
+    <% end %>
+<% else %>
+        No photos found.
+<% end %>
