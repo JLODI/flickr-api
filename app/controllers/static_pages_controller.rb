@@ -1,29 +1,27 @@
 class StaticPagesController < ApplicationController
     require 'flickr'
 
-    # The credentials can be provided as parameters:
-
-    flickr = Flickr.new FLICKR_API_KEY, FLICKR_SECRET_KEY
-
-    # Alternatively, if the API key and Shared Secret are not provided, Flickr will attempt to read them
-    # from environment variables:
-    # ENV['FLICKR_API_KEY']
-    # ENV['FLICKR_SHARED_SECRET']
-
-    flickr = Flickr.new
-
-    # Flickr will raise an error if either parameter is not explicitly provided, or available via environment variables.
-
     def index
-        @flickr_id = "202172076@N08" unless params[:flickr_id]
-        @photos = flickr.people.getPhotos :user_id => @flickr_id
+        begin
+            flickr = Flickr.new ENV['FLICKR_API_KEY'], ENV['FLICKR_SECRET_KEY']
+            if params[:flickr].present?
+                @flickr_id = params[:flickr][:flickr_id]
+            else
+                @flickr_id = "202172076@N08"
+            end
+
+            @photos = flickr.people.getPhotos user_id: @flickr_id, extras: 'url_q'
+            puts 'photos'
+            puts @photos.inspect
+            puts 'photos'
+        rescue 
+            Timeout::Error => e
+            puts e
+            flash[:notice] = "Oops, sorry the api has timed out"
+        rescue 
+            StandardError => e
+            puts e
+            flash[:notice] = "Oops, sorry the api has timed out"
+        end
     end
-    
-    private
-
-    def flickr_params
-        params.require(:flickr).permit(:flickr_id)
-
-    end
-
 end
