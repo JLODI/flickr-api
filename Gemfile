@@ -20,6 +20,9 @@ gem "jbuilder"
 gem "flickr"
 # uses flickr api https://rubygems.org/gems/flickr
 
+gem 'dotenv-rails', groups: [:development, :test]
+# Dotenv for setting up environment variables https://github.com/bkeepers/dotenv
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
